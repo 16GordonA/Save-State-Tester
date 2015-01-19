@@ -1,1 +1,8 @@
 Save data goes here!
+
+EXAMPLE ENTRY
+
+name = BOOGIE WOOGIE
+color = red
+xloc = 67
+yloc = 48
