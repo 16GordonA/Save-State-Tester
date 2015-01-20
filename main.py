@@ -13,6 +13,8 @@ myFont2 = pygame.font.SysFont("Comic Sans", 12)
 
 nameinput= pygame.image.load('Images/Name Input.png')
 cselect = pygame.image.load('Images/ColorSelect.png')
+overwrite = pygame.image.load('Images/remove saves.png')
+owa = pygame.image.load('Images/WoMD.png')
 background = pygame.image.load('Images/gamebg.png')
 
 red1 = pygame.image.load('Images/reds.png')
@@ -64,9 +66,6 @@ while True:
 fr = open('savedata.txt', 'r')
 filetextA = fr.readlines()
 fr.close()
-fr2 = open('savedata.txt')
-filetextS = fr2.read()
-fr2.close()
 
 
 
@@ -81,7 +80,49 @@ for i in range(len(filetextA)):
         myColor = filetextA[i + 1][8:len(filetextA[i+1]) -1]
         myXloc = int(filetextA[i+2][7:len(filetextA[i+2]) -1])
         myYloc = int(filetextA[i+3][7:len(filetextA[i+3]) -1])
+        
 
+owrite = False
+owriteall = False
+
+if not newPlayer:
+    while True:
+        screen.blit(overwrite, (0,0))
+        screen.blit(owa, (200, 320))
+        
+        clickp = pygame.mouse.get_pressed()[0]
+        xpos = pygame.mouse.get_pos()[0]
+        ypos = pygame.mouse.get_pos()[1]
+        
+        if clickp == 1:
+            if(xpos >= 67 and xpos <= 188) and (ypos >= 216 and ypos <= 298):
+                owrite = True
+                break
+            if (xpos >= 403 and xpos <= 525) and (ypos >= 216 and ypos <= 298):
+                owrite = False
+                break
+            if (xpos >= 200 and xpos <= 400) and (ypos >= 320 and ypos <= 420):
+                owrite = True
+                owriteall = True
+                break
+        pygame.display.update()
+        pygame.event.pump()
+        
+if owrite:
+    print 'reached'
+    for i in range(len(filetextA)):
+
+        if filetextA[i][7:] == (playername + '\n'):
+            TBA = ''
+            if not owriteall:
+                for j in range(len(filetextA)):
+                    if j < i or j > i+3:
+                        TBA = TBA + filetextA[j]
+            fw1 = open('savedata.txt', 'w')
+            fw1.write(TBA)
+            fw1.close()
+            newPlayer = True
+            break
 
 if newPlayer:
     while True:
@@ -120,6 +161,10 @@ if newPlayer:
     
     TBA = '\nname = ' + playername + '\ncolor = ' + myColor + '\nxloc = ' 
     TBA = TBA + str(myXloc) + '\nyloc = ' + str(myYloc)
+    
+    fr3 = open('savedata.txt', 'r')
+    filetextS = fr3.read()
+    fr3.close()
     
     filetextS = filetextS + TBA
     
