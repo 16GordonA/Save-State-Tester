@@ -1,8 +1,15 @@
-Save data goes here!
 
-EXAMPLE ENTRY
-
-name = BOOGIE WOOGIE
+name = A
 color = red
-xloc = 67
-yloc = 48
+xloc = 130
+yloc = 115
+
+name = B
+color = blue
+xloc = 205
+yloc = 150
+
+name = CC
+color = green
+xloc = 140
+yloc = 180

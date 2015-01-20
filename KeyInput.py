@@ -4,6 +4,12 @@ from pygame.locals import *
 class KeyInput():
     def __init__(self, nm):
         self.name = nm
+        
+        self.red2 = pygame.image.load('Images/redp.png')
+        self.blue2 = pygame.image.load('Images/bluep.png')
+        self.green2 = pygame.image.load('Images/greenp.png')
+        self.red1 = pygame.image.load('Images/reds.png')
+    
     def getKeyValue(self, k):
         if k[K_a]:
             return 'a'
@@ -79,5 +85,15 @@ class KeyInput():
             return '9'
         else:
             return 'none'
+    
+    def chooseImg(self, color):
+        if color == 'blue':
+            return self.blue2
+        if color == 'green':
+            return self.green2
+        if color == 'red':
+            return self.red2
+        else:
+            return self.red1
   
   
